@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "vitest run -c ./test/vitest.config.unit.ts",
+    "test": "vitest run -c ./test/vitest.config.ts",
     "dev": "nodemon --exec ts-node -T src/index.ts"
   },
   "keywords": [],
