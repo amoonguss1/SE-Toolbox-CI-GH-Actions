@@ -57,3 +57,5 @@ server.listen(port, () => {
 })();
 
 app.use('/', router());
+
+export default app;
