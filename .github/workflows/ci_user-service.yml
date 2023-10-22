@@ -9,6 +9,7 @@ env:
   PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
   PG_DB: ${{ secrets.PG_DB }}
   PG_HOST: ${{ secrets.PG_HOST }}
+  PG_URL: ${{ secrets.PG_URL }}
 
 jobs:
   build:
