@@ -8,18 +8,20 @@ const newAdmin = { id: 1, username: 'bao', email: 'bao@gmail.com', password: 'ba
 describe('Admin', () => {
     beforeAll(async () => {
         // Connect to the database before running your tests
-        try {
-            await sequelize.sync();
-            console.log('Database synchronized!');
-        } catch (error) {
-            console.error('Error synchronizing database:', error);
-        }
+        (async () => {
+            try {
+                await sequelize.sync();
+                console.log('Database synchronized!');
+            } catch (error) {
+                console.error('Error synchronizing database:', error);
+            }
+        })();
     });
     
     test('Add Admin to database should pass with status code 201', async () => {
         const res = await request(app).post('/users').send(newAdmin);
         
-       expect(res.status).toStrictEqual(201);
-       expect(res.body).toStrictEqual(newAdmin);
+        expect(res.status).toStrictEqual(201);
+        expect(res.body).toStrictEqual(newAdmin);
     })
 })
