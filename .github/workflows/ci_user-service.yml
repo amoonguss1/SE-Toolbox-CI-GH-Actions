@@ -6,6 +6,7 @@ on:
 
 env:
   MONGOURL: ${{ secrets.MONGO_URL }}
+  PG_USER: ${{ secrets.PG_USER }}
   PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
   PG_DB: ${{ secrets.PG_DB }}
   PG_HOST: ${{ secrets.PG_HOST }}
@@ -14,6 +15,18 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: ${{ secrets.PG_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.PG_DB }}
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -28,3 +41,6 @@ jobs:
         
       - name: Run Tests for user-service
         run: cd user-service && npm test
+
+      - name: Stop postgres service
+        run: docker-compose down
