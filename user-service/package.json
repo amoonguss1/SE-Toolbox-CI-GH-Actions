@@ -6,6 +6,10 @@
   "scripts": {
     "start": "nodemon",
     "test": "vitest run -c ./test/vitest.config.ts",
+    "test:ci": "npm run test:docker:up && npm run test:vitest && npm run test:docker:down",
+    "test:docker:up": "docker-compose up -d",  // Adjust as needed
+    "test:vitest": "vitest",
+    "test:docker:down": "docker-compose down", // Adjust as needed
     "dev": "nodemon --exec ts-node -T src/index.ts"
   },
   "keywords": [],
