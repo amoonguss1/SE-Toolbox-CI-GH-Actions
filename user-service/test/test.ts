@@ -6,7 +6,7 @@ import { sequelize } from '../src/db/dbConfig'; // Import the database connectio
 const newAdmin = { id: 1, username: 'bao', email: 'bao@gmail.com', password: 'bao', role: 'ADMIN'};
 
 describe('Admin', () => {
-    /*
+    
     beforeAll(async () => {
         // Connect to the database before running your tests
         (async () => {
@@ -18,7 +18,7 @@ describe('Admin', () => {
             }
         })();
     });
-    */
+    
     test('Add Admin to database should pass with status code 201', async () => {
         const res = await request(app).post('/users').send(newAdmin);
         
