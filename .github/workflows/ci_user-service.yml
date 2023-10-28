@@ -29,7 +29,7 @@ jobs:
         run: cd user-service && npm install
         
       - name: Run Tests for user-service
-        run: cd user-service && npm run test:ci
+        run: npm run test:ci
 
       - name: Stop postgres service
         run: docker-compose down

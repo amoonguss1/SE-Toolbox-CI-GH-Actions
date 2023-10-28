@@ -5,18 +5,12 @@ import { sequelize } from '../src/db/dbConfig'; // Import the database connectio
 
 const newAdmin = { id: 1, username: 'bao', email: 'bao@gmail.com', password: 'bao', role: 'ADMIN'};
 
+
 describe('Admin', () => {
     
     beforeAll(async () => {
-        // Connect to the database before running your tests
-        (async () => {
-            try {
-                await sequelize.sync();
-                console.log('Database synchronized!');
-            } catch (error) {
-                console.error('Error synchronizing database:', error);
-            }
-        })();
+        // Connect to the database after it's ready
+        await sequelize.sync({force: true});
     });
     
     test('Add Admin to database should pass with status code 201', async () => {
